@@ -1,5 +1,7 @@
 import React from "react";
 import "../App.css"
+import { Link } from "react-router-dom";
+
 
 const Gallery = () => {
   // const images = [
@@ -13,7 +15,7 @@ const Gallery = () => {
   return (
     <div className="Gallery p-2">
       <div className="Gallery-img">
-         <a href='/photos'> <img src="/image/photo/Gallery-banner.svg" alt='Hero_Image' className='Hero-img' ></img>    </a>    
+         <Link to='/photos'> <img src="/image/photo/Gallery-banner.svg" alt='Hero_Image' className='Hero-img' ></img></Link>    
 </div>
 </div>
 

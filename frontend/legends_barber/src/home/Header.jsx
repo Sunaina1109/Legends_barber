@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import "../App.css";
+import { useModal } from "../context/ModalContext";
+
 
 function Navbar() {
+  const { openModal } = useModal();
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -15,9 +19,8 @@ function Navbar() {
           <a href='/'>
             <img src="./image/B-Logo.svg" alt="logo" className="E-logo" />
           </a>
-          <span className="span">Ladies </span>
-          <span className="span1">&</span>
-          <span className="span2"> Gentleman</span>
+          <span className="span">Unisex </span>
+          <span className="span2"> Salon</span>
         </div>
         <div className="list-menu">
         <button className="hamburger" onClick={toggleMenu}>
@@ -99,7 +102,7 @@ function Navbar() {
             </a>
           </li>
           <li>
-            <button className="Button" type="submit">
+            <button onClick={openModal}  className="Button" type="submit">
               Get Appointment!
             </button>
           </li>

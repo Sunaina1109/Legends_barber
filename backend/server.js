@@ -14,35 +14,36 @@ app.use(cors({ origin: "http://localhost:5173" })); // Replace with your fronten
 
 // Route to handle form submission
 app.post("/send-email", async (req, res) => {
-  const { name, number, email, store, services } = req.body;
+  const { name, number, email, store, gender, services } = req.body; // Added 'gender' here
 
-  if (!name || !email || !store) {
+  if (!name || !email || !store || !gender) { // Ensure gender is also required
     return res.status(400).json({ success: false, message: "Missing required fields" });
   }
 
   try {
     // Configure nodemailer
     const transporter = nodemailer.createTransport({
-      service: "gmail", // Or any other email provider (e.g., Outlook, Yahoo, etc.)
+      service: "gmail",
       auth: {
-        user: "sri.sunaina1109@gmail.com", // Replace with your email
-        pass: "qiex jkod zsym uvoc", // Replace with your email password or app password
+        user: "cosmicdatasystems@gmail.com", // Replace with your email
+        pass: "znat fxmr tkyb jflj", // Replace with your email password or app password
       },
     });
 
     // Email options
     const mailOptions = {
       from: "Gmail", // Sender's email
-      to: "sri.sunaina1109@gmail.com", // Recipient's email
+      to: "cosmicdatasystems@gmail.com", // Recipient's email
       subject: "Appointment Request",
       html: `
         <h2>Hello Team,</h2>
-        <p>We have a new appointment request. Please see the  customer details bellow:</p>
+        <p>We have a new appointment request. Please see the customer details below:</p>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Number:</strong> ${number}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Store:</strong> ${store}</p>
-        <p><strong>Services:</strong> ${services.join(", ")}</p>
+        <p><strong>Gender:</strong> ${gender.charAt(0).toUpperCase() + gender.slice(1)}</p> <!-- Capitalize gender -->
+        <p><strong>Services:</strong> ${services.length > 0 ? services.join(", ") : "No services selected"}</p>
       `,
     };
 

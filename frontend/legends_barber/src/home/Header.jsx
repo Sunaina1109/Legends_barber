@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../App.css";
 import { useModal } from "../context/ModalContext";
+import { Link } from "react-router-dom";
 
 
 function Navbar() {
@@ -31,14 +32,14 @@ function Navbar() {
             <p>Offer</p>
           </li>
           <li className="nav-item">
-            <a className="nav-link active" aria-current="page" href="/">
+            <Link className="nav-link active" aria-current="page" to="/">
               Home
-            </a>
+            </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/">
+            <Link className="nav-link" to="/price">
               Price
-            </a>
+            </Link>
           </li>
           <li className="nav-item dropdown">
             <a
@@ -52,19 +53,19 @@ function Navbar() {
             </a>
             <ul className="dropdown-menu">
               <li>
-                <a className="dropdown-item" href="#">
-                  Store 1
-                </a>
+                <Link className="dropdown-item" to="/porto">
+                 Porto Salon
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Store 2
-                </a>
+                <Link className="dropdown-item" to="/matosinhos">
+                Matosinhos Salon
+                </Link>
               </li>
               <li>
-                <a className="dropdown-item" href="#">
-                  Store 3
-                </a>
+                <Link className="dropdown-item" to="/aveiro">
+                  Aveiro Salon
+                </Link>
               </li>
             </ul>
           </li>
@@ -86,20 +87,20 @@ function Navbar() {
               </li>
               <li>
               <a className="dropdown-item" href="/Services">
-                  Hair Services
+                  Skin Care
                 </a>
               </li>
               <li>
               <a className="dropdown-item" href="/Services">
-                  Hair Services
+                  Nail Arts
                 </a>
               </li>
             </ul>
           </li>
           <li className="nav-item">
-            <a className="nav-link" aria-current="page" href="#">
+            <Link className="nav-link" aria-current="page" to="/photos">
               Gallery
-            </a>
+            </Link>
           </li>
           <li>
             <button onClick={openModal}  className="Button" type="submit">

@@ -1,7 +1,12 @@
 import React from "react";
 import '../App.jsx';
+import { Link } from "react-router-dom";
+import { useModal } from "../context/ModalContext";
+
 
 function Services() {
+   const { openModal } = useModal();  // Get openModal function
+    
     return (
         <div className="service-head">
              <div className="Service-About">
@@ -10,9 +15,9 @@ function Services() {
           <img src="/image/Service-banner.svg" alt='Hero_Image' className='Hero-img' ></img>        
 </div>
 <div className="service-button">
-    <a to="/Contact">Check Now!</a>
-    <a to="/Contact">Check Now!</a>
-    <a to="/">Check Now!</a>
+<a href="#" onClick={(e) => { e.preventDefault(); openModal(); }}>Book Appointment</a>
+<a href="#" onClick={(e) => { e.preventDefault(); openModal(); }}>Book Appointment</a>
+<a href="#" onClick={(e) => { e.preventDefault(); openModal(); }}>Book Appointment</a>
 </div>
         {/* <div  className= 'service-h2'style={{ textAlign:'center', padding:'1.5rem'}}><h2> Explore Our Services</h2>
         <p>Offering exceptional, tailored grooming and beauty solutions for both gentlemen and ladies.</p>

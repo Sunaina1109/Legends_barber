@@ -148,7 +148,7 @@
 
 /* Button styles */
 .Button {
-  background-color: #e67e22;
+  background-color: #0a2ffd;
   color: #fff;
   border: none;
   padding: 10px 15px;
@@ -159,7 +159,7 @@
 }
 
 .Button:hover {
-  background-color: #f39c12 ;
+  background-color: #1216f3 ;
 }
 .offer{
   text-align: center; 
@@ -452,6 +452,9 @@ margin-bottom: 1rem;
   display: flex;
   justify-content: space-around;
   padding: 0px;
+}
+.service-button a{
+  font-size: 1rem;
 }
 
 .card1 {
@@ -916,6 +919,16 @@ color: white;}
   .follow{
     font-size: .5rem;
   }
+  .G-para h1{
+    font-size: 1rem;
+  }
+  .G-para h5{
+    font-size: .9rem;
+  }
+  .G-para p{
+    font-size: .7rem;
+  }
+
 
 }
 
@@ -938,59 +951,83 @@ color: white;}
 color: whitesmoke; 
  border-radius: 50%;
 }
+.G-para{
+  background: radial-gradient(circle, #D8BFD8, #D3D3D3, #FFFFE0);
+  text-align: center;
+}
+.G-para p{
+  margin: 1rem 1rem 0rem 1re;
+}
 @media screen and (max-width: 480px) {
   .Gallery-arrow i{
      font-size: small;
      padding: .5rem;
-     margin-bottom: 2rem;
+     margin-bottom: 2rem;}
 
-  }
-  
+
 }
 
 /* Gallery-image */
 
-.G-banner {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.G-banner-image {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+/* General Styles */
+/* General Styles */
+.container {
+  background-color: #f9f5f5; /* Light Black Theme */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .G-gallery {
-  padding: 16px;
-}
-
-.G-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
 }
 
+/* Gallery Item */
 .G-gallery-item {
-  position: relative;
   overflow: hidden;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
 }
 
+.G-gallery-item:hover {
+  transform: scale(1.05);
+}
+
+/* Image & Video Styles */
 .G-gallery-photo,
 .G-gallery-video {
   width: 100%;
   height: auto;
-  display: block;
-  border-radius: 8px;
+  border-radius: 10px;
+  object-fit: cover;
 }
 
-.G-gallery-video {
-  background: #000;
+/* Responsive - At 480px */
+@media (max-width: 480px) {
+  .G-gallery {
+      grid-template-columns: repeat(2, 1fr); /* 2 columns */
+      gap: 10px;
+  }
+
+  .G-gallery-item {
+      justify-content: center;
+  }
+
+  .G-gallery-photo,
+  .G-gallery-video {
+      width: 90%; /* Smaller size with space on sides */
+  }
 }
+
+
 
 /* Price Component */
 .price-list {
@@ -1057,135 +1094,107 @@ color: whitesmoke;
   color: #73b13c;
 }
 
-/* Modal Overlay */
+/*Appointment form */
+/* Appointment Form Styles */
+.modal-content {
+  background: #cdcccc;
+  padding: 10px 20px 20px 20px;  /* Reduced top padding */
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  animation: 0.3s ease-in-out;
+}
+
 .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  position: fixed;
+  inset: 0;
 }
-
-/* Modal Content */
-.modal-content {
-  background: #fff;
-  padding: 20px;
-  width: 50%;
-  max-width: 500px;
-  border-radius: 10px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+.warning-text {
+  color: red;
+  font-size: 14px;
   text-align: center;
-  position: relative;
-}
-
-/* Close Button */
-.close-button {
-  background: #ff4d4d;
-  color: white;
-  border: none;
-  width: 100px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
   margin-top: 10px;
-  transition: 0.3s ease;
-}
-.group{
- display: flex;
-justify-content: space-around;
-}
-.close-button:hover {
-  background: #d43f3f;
 }
 
-/* Form Fields */
 form {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap:'10px';
+  margin-top: 10px;  /* Reduced top margin */
+
 }
 
-label {
-  font-size: 16px;
-  font-weight: 500;
-  text-align: left;
+.form-row {
   display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-/* Input Fields */
-input, select {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-}
-
-/* Submit Button */
-button[type="submit"] {
-  background: #007bff;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-button[type="submit"]:hover {
-  background: #0056b3;
-}
-
-/* Service Selection - Initially Hidden */
-.services-container {
-  display: none;
-}
-
-/* When Store is Selected, Show Services */
-.store-selected .services-container {
-  display: block;
-  margin-top: 10px;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 5px;
-}
-
-/* Checkbox Styling */
-.checkbox-label {
-  display: flex;
-  align-items: center;
+  justify-content: space-between;
   gap: 10px;
-  font-size: 14px;
-  cursor: pointer;
+  margin-bottom: 15px;
 }
 
-.checkbox-label input {
-  transform: scale(1.2);
+.form-group {
+  flex: 1;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  background: #1d0dfd;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 15px;
+  transition: 0.3s ease-in-out;
+}
+
+button:hover {
+  background: #16059d;
+}
+
+/* Service Dropdown */
+.service-dropdown {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #f9f9f9;
+  text-align: center;
+}
+
+.dropdown-container {
+  max-height: 200px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  background: #fff;
+  border-radius: 5px;
+  margin-top: 10px;
 }
 
 /* Responsive Design */
 @media (max-width: 600px) {
   .modal-content {
-      width: 95%;
+      width: 90%;
+      max-width: 100%;
       padding: 15px;
   }
 
-  label {
+  
+  input, select, button {
       font-size: 14px;
-  }
-
-  input, select {
-      font-size: 13px;
-  }
-
-  .checkbox-label {
-      font-size: 13px;
+      padding: 8px;
   }
 }

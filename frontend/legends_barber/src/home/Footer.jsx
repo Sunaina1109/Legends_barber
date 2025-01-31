@@ -27,9 +27,9 @@ const Footer = () => {
                 <div className="footer-section quick-links">
                     <h3>Company</h3>
                     <ul>
-                        <li><a href="#">Terms & Condition</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Disclaimer</a></li>
+                        <li><Link to="/terms&conditions">Terms & Condition</Link></li>
+                        <li><Link to="/privacy-policy">Privacy Policy</Link></li>
+                        <li><Link to="/disclaimer">Disclaimer</Link></li>
                         <li><Link to="/about">About Us</Link></li>
                         <li><Link to="/contact-us">Contact Us</Link></li>
                     </ul>
@@ -43,7 +43,7 @@ const Footer = () => {
                         <li><Link to="/services">Services</Link></li>
                         <li><Link to="/photos">Gallery</Link></li>
                         {/* Use openModal function */}
-                        <li><a href="#" onClick={(e) => { e.preventDefault(); openModal(); }}>Book Appointment</a></li>
+                        <li><Link to="/" onClick={(e) => { e.preventDefault(); openModal(); }}>Book Appointment</Link></li>
                     </ul>
                 </div>
 

@@ -17,7 +17,9 @@ import PrivacyPolicy from "./Webpages.jsx/PrivacyPolicy";
 import TermsCondition from "./Webpages.jsx/TermsCondition";
 import ScrollTop from "./ScrollTop";
 import AppointmentForm from "./appointment/AppointmentForm";
-
+import PortoSalon from "./group1/PortoSalon";
+import MatosinhosSalon from "./group2/MatosinhosSalon";
+import AveiroSalon from "./group3/AveiroSalon";
 
 createRoot(document.getElementById("root")).render(
   <ModalProvider>
@@ -34,6 +36,10 @@ createRoot(document.getElementById("root")).render(
         <Route path="/disclaimer" element={<Disclaimer />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         <Route path="/terms&conditions" element={<TermsCondition />} />
+        <Route path="/porto-studio" element={<PortoSalon />} />
+        <Route path="/matosinhos-studio" element={<MatosinhosSalon />} />
+        <Route path="/aveiro-studio" element={<AveiroSalon />} />
+
 
       </Routes>
       <AppointmentForm />

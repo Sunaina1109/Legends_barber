@@ -1,8 +1,5 @@
 /* header component */
-.nav-container{
-  background: url("D:\Legends_barber\frontend\legends_barber\public\image\head-bg.png") no-repeat center center ;
- 
-}
+
 
 /* header */
 /* Navbar container styles */
@@ -839,6 +836,7 @@ margin: 5rem  12rem 4rem 12rem;
 border-radius: 2rem;
 padding: 3rem 0rem;
 }
+
 .social-icon{
   display: flex;
   margin-top: 1rem;
@@ -849,6 +847,12 @@ padding: 3rem 0rem;
   color: rgb(255, 255, 255);
   font-size: 3rem;
   text-decoration: none;
+  transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+
+}
+.social-icon a:hover {
+  transform: scale(1.2); /* Zoom in effect */
+  color: #007bff; /* Change color on hover */
 }
 .social-icon a:hover{
   color: #e19223;
@@ -1030,69 +1034,169 @@ color: whitesmoke;
 
 
 /* Price Component */
+/* General Styling */
+
 .price-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 20px;
-  color: #333;
-  padding: 20px;
 }
 
-.section {
-  flex: 1 1 45%; /* Each section takes about 45% of the width */
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #cad0e8;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-.ladies-section{
-  background-color: #ecc5c5;
+/* Gents Section - Blue Theme */
+.sections:nth-child(1) {
+  background:  #94e4ff;
 }
 
-.section h2 {
+/* Ladies Section - Pink & Purple */
+.sections:nth-child(2) {
+  background:  #ffc2dd;
+}
+
+
+
+.sections {
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  transition: 0.3s ease;
+}
+
+.sections:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.price-h2 {
   text-align: center;
-  color: #353535;
-  text-decoration: underline;
+  font-size: 34px;
+  color: #333;
+  font-weight: bold;
   margin-bottom: 15px;
+  text-transform: uppercase;
 }
 
-.price-image {
-  display: block;
-  width: 80%;
-  max-width: 200px;
-  margin: 0 auto 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+.price-h3 {
+  color: #444;
+  font-size: 24px;
+  margin-top: 15px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
+  text-transform: capitalize;
 }
 
-.services .h3 {
-  margin-top: 20px;
-  margin-bottom: 10px;
-  color: #373737;
-}
-
-.services .ul {
-  list-style-type: none;
+.price-ul {
+  list-style: none;
   padding: 0;
-  margin: 0;
 }
 
-.services .ul li {
+.price-ul li {
   display: flex;
   justify-content: space-between;
-  margin: 10px 0;
+  background: #eae5e5;
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
+  margin: 6px 0;
+  border-radius: 6px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition:  0.3s ease;
 }
 
-.services .ul li span:last-child {
-  font-weight: bold;
-  color: #73b13c;
+
+.price-ul li span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
 }
+
+/* Nail Arts Section */
+.sections:nth-child(3) {
+  grid-column: span 2;
+  text-align: center;
+  background: linear-gradient(90deg, #a5feff, #fca8ce);
+  color: rgb(24, 24, 24);
+}
+
+.sections:nth-child(3) .price-h2 {
+  color: rgb(82, 81, 81);
+}
+
+.sections:nth-child(3) .price-ul li {
+  background: rgba(250, 249, 249, 0.765);
+  color: rgba(255, 255, 255, 0.2);
+  border: 1px solid white;
+  padding: 10px;
+
+}
+
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .price-list {
+    grid-template-columns: 1fr;
+  }
+
+  .sections:nth-child(3) {
+    grid-column: span 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .sections {
+    padding: 15px;
+  }
+
+  .price-h2 {
+    font-size: 22px;
+  }
+
+  .price-h3 {
+    font-size: 16px;
+  }
+
+  .price-ul li {
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+  }
+
+  .price-ul li span {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .price-list {
+    grid-template-columns: 1fr;
+  }
+
+  .sections {
+    padding: 10px;
+  }
+
+  .price-h2 {
+    font-size: 18px;
+  }
+
+  .price-h3 {
+    font-size: 16px;
+  }
+
+  .price-ul li {
+    font-size: 12px;
+    padding: 8px;
+  }
+
+  .price-ul li span {
+    font-size: 12px;
+  }
+
+  .sections:nth-child(3) .price-ul li {
+    width: 100%;
+  }
+}
+
 
 /*Appointment form */
 /* Appointment Form Styles */
@@ -1183,6 +1287,17 @@ button:hover {
   border-radius: 5px;
   margin-top: 10px;
 }
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px;
+  margin-top: 20px;
+  text-align: center;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+}
+
 
 /* Responsive Design */
 @media (max-width: 600px) {

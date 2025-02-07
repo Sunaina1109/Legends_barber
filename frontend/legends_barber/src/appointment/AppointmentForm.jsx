@@ -16,6 +16,8 @@ const AppointmentForm = () => {
         store: "",
         gender: "",
         services: [],
+        date: "", // New state for date
+        time: "", // New state for time
     });
 
     const [showServices, setShowServices] = useState(false);
@@ -24,7 +26,7 @@ const AppointmentForm = () => {
     const stores = ["Porto Salon", "Matosinhos Salon", "Aveiro Salon"];
     
     const servicesForGender = {
-        ladies: {
+        Female: {
             "Hair Services": [
                 "Head Wash", "Head Wash & Brushing", "Head Massage (25 min)", "Hair Spa",
                 "Basic Hair Cut", "Layers Hair Cut", "Step Hair Cut", "Blow Dryer",
@@ -47,7 +49,7 @@ const AppointmentForm = () => {
                 "Pedicure", "Nail Polish", "Gel Nail Polish", "Pedicure With Nail Polish", "Foot Massage (20 min)"
             ]
         },
-        gents: {
+        Male: {
             "Hair Services": [
                 "Basic Hair Cut", "Hair Cut", "Beard Cut", "Clean Shave", "Baby Hair Cut",
                 "Head Wash & Styling", "Braids & Dreadlocks", "Hair Curl", "Face Wax",
@@ -78,8 +80,8 @@ const AppointmentForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        setShowWarning(false); // Remove warning once user selects store/gender
-        if (name === "store" || name === "gender") setShowServices(false);
+        setShowWarning(false); // Remove warning once user selects store/gender/date/time
+        if (name === "store" || name === "gender" || name === "date" || name === "time") setShowServices(false);
     };
 
     const handlePhoneChange = (value) => {
@@ -97,8 +99,8 @@ const AppointmentForm = () => {
     };
 
     const handleServiceClick = () => {
-        if (!formData.store || !formData.gender) {
-            setShowWarning(true); // Show warning message if store/gender is not selected
+        if (!formData.store || !formData.gender || !formData.date || !formData.time) {
+            setShowWarning(true); // Show warning message if store, gender, date, or time is not selected
         } else {
             setShowServices(!showServices);
         }
@@ -116,7 +118,7 @@ const AppointmentForm = () => {
             const data = await response.json();
 
             if (data.success) {
-                setFormData({ name: "", number: "", email: "", store: "", gender: "", services: [] });
+                setFormData({ name: "", number: "", email: "", store: "", gender: "", services: [], date: "", time: "" });
                 closeModal();
                 setTimeout(() => {
                     alert("Your request was successfully submitted. We will contact you soon!");
@@ -167,19 +169,29 @@ const AppointmentForm = () => {
                     <label>
                         <select name="gender" value={formData.gender} onChange={handleChange} required>
                             <option value="" disabled>Select Gender</option>
-                            <option value="ladies">Ladies</option>
-                            <option value="gents">Gents</option>
+                            <option value="Female">Female</option>
+                            <option value="Male">Male</option>
                         </select>
                     </label>
                 </div>
 
+                <div className="form-row">
+                    <label>
+                        <input type="date" name="date" value={formData.date} onChange={handleChange} required />
+                    </label>
+
+                    <label>
+                        <input type="time" name="time" value={formData.time} onChange={handleChange} required />
+                    </label>
+                </div>
+
+                {showWarning && <p className="warning-text">Please select store, gender, date, and time first.</p>}
+
                 <label>
-                    <div className="service-dropdown" onClick={handleServiceClick}>
+                    <div className="service-dropdown" onClick={handleServiceClick} style={{ cursor: 'pointer' }}>
                         {formData.services.length === 0 ? "Select a Service" : formData.services.join(", ")}
                     </div>
                 </label>
-
-                {showWarning && <p className="warning-text">Please select store and gender first.</p>}
 
                 {showServices && (
                     <div className="dropdown-container">
@@ -196,7 +208,7 @@ const AppointmentForm = () => {
                         ))}
                     </div>
                 )}
-                
+
                 <button type="submit">Submit</button>               
             </form>
         </Modal>

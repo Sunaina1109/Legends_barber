@@ -17,9 +17,9 @@ const MatosinhosSalon = () => {
       </section>
 <br></br>
       {/* About Section */}
-      <section className="p-5">
+      <section className="p-3">
         <img
-          src=".\image\A-1.png"
+          src=".\image\A-2.png"
           alt="About Us"
         className='Hero-img'
         />

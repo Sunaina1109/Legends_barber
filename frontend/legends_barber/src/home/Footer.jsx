@@ -58,7 +58,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p><i className="fa-regular fa-copyright"></i> 2025 Legends Barber Services. All rights reserved | Powered by <a href="https://cosmicdatasystems.com/">Cosmic Data Systems</a></p>
+                <p><i className="fa-regular fa-copyright"></i> 2025 Legends Barber Studio. All rights reserved | Powered by <a href="https://cosmicdatasystems.com/">Cosmic Data Systems</a></p>
             </div>
         </footer>
     );

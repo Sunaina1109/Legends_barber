@@ -17,16 +17,16 @@ const AveiroSalon = () => {
       </section>
 <br></br>
       {/* About Section */}
-      <section className="p-5">
+      <section className="p-3">
         <img
-          src=".\image\A-1.png"
+          src=".\image\A-3.png"
           alt="About Us"
         className='Hero-img'
         />
       </section>
 
       {/* Services Section */}
-      <section className="bg-gray-100 py-20 px-10">
+      <section className="bg-gray-100 py-20 px-10 p-3">
       <Link to='/' onClick={(e) => { e.preventDefault(); openModal(); }}>
       <img
           src=".\image\S-2.svg"

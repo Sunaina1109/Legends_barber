@@ -43,6 +43,7 @@ app.post("/send-email", async (req, res) => {
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Store:</strong> ${store}</p>
         <p><strong>Gender:</strong> ${gender.charAt(0).toUpperCase() + gender.slice(1)}</p> <!-- Capitalize gender -->
+        <p><strong>date:</strong> ${date}</p>
         <p><strong>Services:</strong> ${services.length > 0 ? services.join(", ") : "No services selected"}</p>
       `,
     };

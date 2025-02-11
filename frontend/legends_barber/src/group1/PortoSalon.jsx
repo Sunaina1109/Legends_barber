@@ -17,7 +17,7 @@ const PortoSalon = () => {
       </section>
 <br></br>
       {/* About Section */}
-      <section className="p-5">
+      <section className="p-3">
         <img
           src=".\image\A-1.png"
           alt="About Us"

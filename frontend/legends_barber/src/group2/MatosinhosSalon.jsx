@@ -9,6 +9,17 @@ const MatosinhosSalon = () => {
     <div className="font-sans text-gray-900">
       {/* Banner Section */}
       <section className="hero-pic">
+      <p style={{fontSize:'1px', color: 'blue', textAlign:'center'}}>
+          Legends Barber Studio is the ultimate destination for men’s and
+          women’s haircuts, skincare, and nail art services. We offer
+          professional hair styling, beard grooming, facials, waxing, manicures,
+          and pedicures, all in one place. Our top-rated barbers and beauty
+          experts provide modern hairstyles, fades, shaves, hair coloring, and
+          rejuvenating skin treatments to enhance your look. Whether you need a
+          trendy haircut, glowing skin, or stylish nails, we ensure a luxurious
+          experience. Visit Legends Barber Studio, the best unisex salon and
+          grooming studio, for your complete transformation today!
+        </p>
       <img
           src=".\image\G-2.svg"
           alt="About Us"

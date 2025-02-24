@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import Modal from "react-modal";
 import PhoneInput from "react-phone-input-2";
 import { useModal } from "../context/ModalContext";
+import emailjs from "emailjs-com"; 
 import "../App.css"; // Import CSS styles
 
 Modal.setAppElement("#root");
 
 const AppointmentForm = () => {
     const { isModalOpen, closeModal } = useModal();
-    
+
     const [formData, setFormData] = useState({
         name: "",
         number: "",
@@ -16,40 +17,35 @@ const AppointmentForm = () => {
         store: "",
         gender: "",
         services: [],
-        date: "", // New state for date
-        time: "", // New state for time
+        date: "",
+        time: "",
     });
 
     const [showServices, setShowServices] = useState(false);
-    const [showWarning, setShowWarning] = useState(false); // New state for warning message
+    const [showWarning, setShowWarning] = useState(false);
 
     const stores = ["Porto Salon", "Matosinhos Salon", "Aveiro Salon"];
-    
-    const servicesForGender = {
-        Female: {
-            "Hair Services": [
-                "Head Wash", "Head Wash & Brushing", "Head Massage (25 min)", "Hair Spa",
+
+    const servicesForGender = {  
+        Female: { 
+            "Hair Services": [ "Head Wash", "Head Wash & Brushing", "Head Massage (25 min)", "Hair Spa",
                 "Basic Hair Cut", "Layers Hair Cut", "Step Hair Cut", "Blow Dryer",
                 "Head Wash & Blow Dryer", "Highlights", "Highlight Chunks",
                 "Temporary Hair Ironing", "Temporary Hair Rolls", "Roots Touch-up",
-                "Hair Colour", "Keratin Treatment", "Hair Polishing", "Rebounding/Smoothing"
-            ],
-            "Skin Care Services": [
-                "Clean Up", "Clean Up (With Steam)", "Only Scrub", "Only D-Tan",
-                "Only Gel Massage", "D-Tan Facial", "Facial", "Acne Treatment"
-            ],
-            "Nail Art Service": [
-                "New Gel Extension", "Gel Extension Maintenance", "Take Off Gel Extension",
-                "One Nail Repair", "Take Off Gel Nail Polish", "Capsule Nail Extension with Glue",
-                "Manicure", "Manicure With Normal Nail Polish", "Manicure With Gel Nail Polish",
-                "Nail Polish", "Gel Nail Polish", "Additional French Colour", "Nail Art for One Nail",
-                "Threading & Colouring"
-            ],
-            "Pedicure Services": [
-                "Pedicure", "Nail Polish", "Gel Nail Polish", "Pedicure With Nail Polish", "Foot Massage (20 min)"
-            ]
+                "Hair Colour", "Keratin Treatment", "Hair Polishing", "Rebounding/Smoothing"],
+            "Skin Care Services": ["Clean Up", "Clean Up (With Steam)", "Only Scrub", "Only D-Tan",
+                "Only Gel Massage", "D-Tan Facial", "Facial", "Acne Treatment"],
+                "Nail Art Service": [
+                    "New Gel Extension", "Gel Extension Maintenance", "Take Off Gel Extension",
+                    "One Nail Repair", "Take Off Gel Nail Polish", "Capsule Nail Extension with Glue",
+                    "Manicure", "Manicure With Normal Nail Polish", "Manicure With Gel Nail Polish",
+                    "Nail Polish", "Gel Nail Polish", "Additional French Colour", "Nail Art for One Nail",
+                    "Threading & Colouring"
+                ],
+                "Pedicure Services": [
+                    "Pedicure", "Nail Polish", "Gel Nail Polish", "Pedicure With Nail Polish", "Foot Massage (20 min)" ]    
         },
-        Male: {
+        Male: { 
             "Hair Services": [
                 "Basic Hair Cut", "Hair Cut", "Beard Cut", "Clean Shave", "Baby Hair Cut",
                 "Head Wash & Styling", "Braids & Dreadlocks", "Hair Curl", "Face Wax",
@@ -80,7 +76,7 @@ const AppointmentForm = () => {
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
-        setShowWarning(false); // Remove warning once user selects store/gender/date/time
+        setShowWarning(false);
         if (name === "store" || name === "gender" || name === "date" || name === "time") setShowServices(false);
     };
 
@@ -100,7 +96,7 @@ const AppointmentForm = () => {
 
     const handleServiceClick = () => {
         if (!formData.store || !formData.gender || !formData.date || !formData.time) {
-            setShowWarning(true); // Show warning message if store, gender, date, or time is not selected
+            setShowWarning(true);
         } else {
             setShowServices(!showServices);
         }
@@ -108,25 +104,38 @@ const AppointmentForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        try {
-            const response = await fetch("/send-email", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(formData),
-            });
 
-            const data = await response.json();
-
-            if (data.success) {
-                setFormData({ name: "", number: "", email: "", store: "", gender: "", services: [], date: "", time: "" });
-                closeModal();
-                setTimeout(() => {
-                    alert("Your request was successfully submitted. We will contact you soon!");
-                }, 300);
-            }
-        } catch (error) {
-            console.error("An error occurred.");
+        if (!formData.name || !formData.number || !formData.email || !formData.store || !formData.gender || !formData.date || !formData.time) {
+            alert("Please fill all required fields!");
+            return;
         }
+
+        const templateParams = {
+            name: formData.name,
+            number: formData.number,
+            email: formData.email,
+            store: formData.store,
+            gender: formData.gender,
+            services: formData.services.join(", "),
+            date: formData.date,
+            time: formData.time,
+        };
+
+        emailjs.send(
+            "service_j8e6hfs",  // EmailJS Service ID
+            "template_2rwdjj5",  // EmailJS Template ID
+            templateParams,
+            "wOM3XHkB20x_uT7eG"    // EmailJS Public Key
+        )
+        .then((response) => {
+            alert("Your request was successfully submitted. We will contact you soon!");
+            setFormData({ name: "", number: "", email: "", store: "", gender: "", services: [], date: "", time: "" });
+            closeModal();
+        })
+        .catch((error) => {
+            console.error("EmailJS Error:", error);
+            alert("Failed to send the email. Please try again.");
+        });
     };
 
     return (
@@ -144,10 +153,7 @@ const AppointmentForm = () => {
                             country={"pt"}
                             value={formData.number}
                             onChange={handlePhoneChange}
-                            inputProps={{
-                                name: "number",
-                                required: true,
-                            }}
+                            inputProps={{ name: "number", required: true }}
                         />
                     </label>
                 </div>

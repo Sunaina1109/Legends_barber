@@ -17,7 +17,7 @@ function About() {
         whileInView="visible"
         viewport={{ once: true }}
       >
-         <p style={{fontSize:'1px', color: 'white', textAlign:'center'}}>
+         <p style={{fontSize:'0.5px', color: 'white', textAlign:'center'}}>
         Legends Barber Studio welcomes men and women on a transformative journey
         of style and self-care. We offer exceptional hair, skin, and nail
         services, all in one place, ensuring a seamless and luxurious
